@@ -1,1 +1,4 @@
-Date,Ticker,Shares Bought,Buy Price,Cost Basis,PnL,Reason,Shares Sold,Sell Price
+Date,Ticker,Shares Bought,Buy Price,Cost Basis,PnL,Reason
+2025-09-19,IOBT,28.0,1.57,43.96,0.0,MANUAL BUY LIMIT - Filled
+2025-09-22,SPRO,22.0,2.0,44.0,0.0,MANUAL BUY LIMIT - Filled
+2025-09-22,ABAT,18.0,3.0,54.0,0.0,MANUAL BUY LIMIT - Filled
