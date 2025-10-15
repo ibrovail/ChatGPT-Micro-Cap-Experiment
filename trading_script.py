@@ -23,15 +23,15 @@ from typing import Any, cast,Dict, List, Optional
 import os
 import warnings
 
-import numpy as np
-import pandas as pd
-import yfinance as yf
+import numpy as np # type: ignore
+import pandas as pd # type: ignore
+import yfinance as yf # type: ignore
 import json
 import logging
 
 # Optional pandas-datareader import for Stooq access
 try:
-    import pandas_datareader.data as pdr
+    import pandas_datareader.data as pdr # type: ignore
     _HAS_PDR = True
 except Exception:
     _HAS_PDR = False
@@ -270,7 +270,7 @@ def _yahoo_download(ticker: str, **kwargs: Any) -> pd.DataFrame:
 
 def _stooq_csv_download(ticker: str, start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
     """Fetch OHLCV from Stooq CSV endpoint (daily). Good for US tickers and many ETFs."""
-    import requests, io
+    import requests, io # type: ignore
     if ticker in STOOQ_BLOCKLIST:
         return pd.DataFrame()
     t = STOOQ_MAP.get(ticker, ticker)
@@ -323,7 +323,7 @@ def _stooq_download(
         # Ensure pdr is imported locally if not available globally
         if not _HAS_PDR:
             return pd.DataFrame()
-        import pandas_datareader.data as pdr_local
+        import pandas_datareader.data as pdr_local # type: ignore
         df = cast(pd.DataFrame, pdr_local.DataReader(t, "stooq", start=start, end=end))
         df.sort_index(inplace=True)
         return df
@@ -1143,7 +1143,8 @@ def daily_results(chatgpt_portfolio: pd.DataFrame, cash: float) -> None:
         "Use this info to make decisions regarding your portfolio. You have complete control over every decision. Make any changes you believe are beneficial—no approval required.\n"
         "Deep research is not permitted. Act at your discretion to achieve the best outcome.\n"
         "If you do not make a clear indication to change positions IMMEDIATELY after this message, the portfolio remains unchanged for tomorrow.\n"
-        "You are encouraged to use the internet to check current prices (and related up-to-date info) for potential buys.\n"
+        "Use the internet to check current prices (and related up-to-date info such as the catalyst calendar) for potential buys.\n"
+        "Do not ask questions, just provide FINAL decisions and state rationale for them.\n"
         "\n"
         "*Paste everything above into ChatGPT*"
     )

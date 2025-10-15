@@ -188,12 +188,12 @@ def plot_comparison(
     ax.grid(True)
 
     # Strict daily ticks & YYYY-MM-DD labels
-    ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
+    ax.xaxis.set_major_locator(mdates.DayLocator(interval=3)) # <-- changed to 3-day interval
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
     ax.xaxis.set_minor_locator(mticker.NullLocator())  # <-- fixed
 
     # Add 1-day padding on each side
-    pad = pd.Timedelta(days=0.15)
+    pad = pd.Timedelta(days=0.75)
     ax.set_xlim(p_dates.min() - pad, p_dates.max() + pad)
 
     fig.autofmt_xdate(rotation=30, ha="right")
